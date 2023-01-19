@@ -13,7 +13,7 @@ import useMemberInfo from "@/store/useMemberInfo";
 import authAxios from "@/util/authAxios";
 
 const handleClickLogin = async () => {
-  const res = await axios.post(`http://armysseung.iptimeorg:3258/api/generate`)
+  const res = await axios.post(`http://armysseung.iptime.org:3258/api/generate`)
 
   //{access:xxxx, refresh:xxxx}
   const data = res.data
@@ -25,7 +25,7 @@ const handleClickLogin = async () => {
 
 const handleClickEx1 = async () => {
 
-  const res = await authAxios.get('http://armysseung.iptimeorg:3258/api/sample/ex1')
+  const res = await authAxios.get('http://armysseung.iptime.org:3258/api/sample/ex1')
   const data = res.data
 
   console.log(data)
@@ -33,7 +33,7 @@ const handleClickEx1 = async () => {
 
 const handleClickEx2 = async () => {
 
-  const res = await authAxios.get('http://armysseung.iptimeorg:3258/api/sample/ex2')
+  const res = await authAxios.get('http://armysseung.iptime.org:3258/api/sample/ex2')
   const data = res.data
 
   console.log(data)
@@ -41,7 +41,7 @@ const handleClickEx2 = async () => {
 
 const handleClickEx3 = async () => {
 
-  const res = await authAxios.get('http://armysseung.iptimeorg:3258/api/sample/ex3')
+  const res = await authAxios.get('http://armysseung.iptime.org:3258/api/sample/ex3')
   const data = res.data
 
   console.log(data)
