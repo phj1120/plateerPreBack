@@ -1,3 +1,3 @@
 cd Backend
 
-gradlew clean bootrun
+start gradlew clean bootRun
