@@ -1,3 +1,3 @@
 cd Backend
 
-gradlew bootrun
+start gradlew bootrun
