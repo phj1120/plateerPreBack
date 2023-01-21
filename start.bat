@@ -1,4 +1,7 @@
+@Echo off
 cd Backend
+
+
 
 for /f "tokens=5" %%p in (' netstat -ano ^| find "LISTENING" ^| find "8080" ') do taskkill /F /PID %%p > NUL
 IF NOT ERRORLEVEL 1 (
@@ -6,5 +9,8 @@ IF NOT ERRORLEVEL 1 (
 ) ELSE (
 	ECHO kill OK.
 )
- 
+
+:END
+	ECHO
+
 start gradlew clean bootRun
