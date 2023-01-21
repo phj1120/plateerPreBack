@@ -6,5 +6,5 @@ IF NOT ERRORLEVEL 1 (
 ) ELSE (
 	ECHO kill OK.
 )
-
+ 
 start gradlew clean bootRun
