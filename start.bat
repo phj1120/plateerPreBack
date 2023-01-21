@@ -11,6 +11,7 @@ IF NOT ERRORLEVEL 1 (
 )
 
 :END
-	ECHO
+
+
 
 start gradlew clean bootRun
