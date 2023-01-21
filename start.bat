@@ -1,4 +1,3 @@
-@Echo off
 cd Backend
 
 
