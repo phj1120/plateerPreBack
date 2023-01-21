@@ -14,3 +14,7 @@ IF NOT ERRORLEVEL 1 (
 
 
 start gradlew clean bootRun
+
+
+
+Exit 0
