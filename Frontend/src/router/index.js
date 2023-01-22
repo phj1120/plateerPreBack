@@ -7,8 +7,9 @@ const routes = [
     component: () => import('@/layouts/default/Default.vue'),
     children: [
       {
-        path: '',
-        redirect: '/todo/list',
+        path: '/',
+        name: 'Home',
+        // redirect: '/todo/list',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
       },
       {
