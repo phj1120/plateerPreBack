@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class RollingDTO {
     private Long id;
-
     private String title;
     private String writer;
     private String target;
