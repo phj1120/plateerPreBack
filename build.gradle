@@ -35,6 +35,7 @@ dependencies {
     // TEST 코드 및 로그 등의 가능
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
+
 }
 
 tasks.named('test') {

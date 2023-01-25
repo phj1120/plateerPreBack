@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Log4j2
 @Service
-public class RollingServiceImpl implements RollingService{
+public class RollingServiceImpl implements RollingService {
     private final ModelMapper modelMapper;
     private final RollingRepository rollingRepository;
 
@@ -30,11 +30,11 @@ public class RollingServiceImpl implements RollingService{
 
         List<RollingDTO> list = result.stream().map(arr -> {
             RollingDTO rollingDTO = modelMapper.map(arr, RollingDTO.class);
-            return  rollingDTO;
+            return rollingDTO;
         }).collect(Collectors.toList());
 
         PageResultDTO<RollingDTO> pageResultDTO =
-                new PageResultDTO<>(list, pageable, result.getTotalElements(), result.getTotalPages() );
+                new PageResultDTO<>(list, pageable, result.getTotalElements(), result.getTotalPages());
 
         return pageResultDTO;
     }
@@ -49,4 +49,15 @@ public class RollingServiceImpl implements RollingService{
 
         return list;
     }
+
+    @Override
+    public Long addPaper(RollingDTO rollingDTO) {
+
+        Rolling rolling = modelMapper.map(rollingDTO, Rolling.class);
+
+        Long id = rollingRepository.save(rolling).getId();
+
+        return id;
+    }
+
 }

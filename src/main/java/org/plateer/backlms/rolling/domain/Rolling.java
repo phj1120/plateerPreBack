@@ -23,7 +23,6 @@ public class Rolling {
     private String title;
     private String writer;
     private String target;
-
     private String imgSrc;
     private LocalDate createDt;
     private LocalDate updateDt;
