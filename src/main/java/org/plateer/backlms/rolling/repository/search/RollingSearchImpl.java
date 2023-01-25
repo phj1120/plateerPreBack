@@ -3,8 +3,8 @@ package org.plateer.backlms.rolling.repository.search;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
+import org.plateer.backlms.rolling.domain.QReply;
 import org.plateer.backlms.rolling.domain.QRolling;
 import org.plateer.backlms.rolling.domain.Rolling;
 import org.plateer.backlms.rolling.dto.RollingDTO;
@@ -25,8 +25,10 @@ public class RollingSearchImpl extends QuerydslRepositorySupport implements Roll
     @Override
     public Page<RollingDTO> searchList(Pageable pageable, RollingSearchDTO searchDTO) {
         QRolling rolling = QRolling.rolling;
+        QReply reply = QReply.reply;
 
         JPQLQuery<Rolling> query = from(rolling);
+        query.leftJoin(reply).on(rolling.eq(reply.rolling)).groupBy(rolling);
 
         BooleanBuilder builder = new BooleanBuilder();
 
@@ -53,6 +55,7 @@ public class RollingSearchImpl extends QuerydslRepositorySupport implements Roll
                 rolling.writer,
                 rolling.target,
                 rolling.imgSrc,
+                reply.countDistinct().as("replyCount"),
                 rolling.createDt,
                 rolling.updateDt
         ));

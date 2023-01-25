@@ -18,6 +18,7 @@ public class RollingDTO {
     private String writer;
     private String target;
     private String imgSrc;
+    private Long replyCount;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDt;

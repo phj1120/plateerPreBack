@@ -27,6 +27,7 @@ public class RollingServiceImpl implements RollingService {
     @Override
     public PageResultDTO<RollingDTO> getRollingList(PageReqDTO pageReqDTO) {
         Pageable pageable = pageReqDTO.getPageable(Sort.by("id").descending());
+        // querydsl 로
         Page<Rolling> result = rollingRepository.findAll(pageable);
 
         List<RollingDTO> list = result.stream().map(arr -> {
