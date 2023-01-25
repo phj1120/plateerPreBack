@@ -42,11 +42,11 @@ public class RollingContoller {
         log.info(rollingDTO);
 
         return rollingService.addPaper(rollingDTO);
+    }
 
     /*
         2022.01.25 정승현 / 검색으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에서 사용 )
      */
-        
     @GetMapping("getSearchRollingList")
     public PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO rollingSearchDTO) {
         return rollingService.getSearchRollingList(pageReqDTO, rollingSearchDTO);
