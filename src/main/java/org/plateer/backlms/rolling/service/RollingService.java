@@ -16,4 +16,6 @@ public interface RollingService {
 
     // 롤링페이퍼 검색 리스트 서비스
     PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO rollingSearchDTO);
+
+    RollingDTO getRolling(Long id);
 }
