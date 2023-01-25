@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.plateer.backlms.common.dto.PageReqDTO;
 import org.plateer.backlms.common.dto.PageResultDTO;
-import org.plateer.backlms.rolling.dto.ReplyDTO;
 import org.plateer.backlms.rolling.dto.ReplyListDTO;
 import org.plateer.backlms.rolling.dto.RollingDTO;
 import org.plateer.backlms.rolling.dto.RollingSearchDTO;
@@ -28,7 +27,6 @@ public class RollingContoller {
     private final ReplyService replyService;
 
 
-
     /*
         2023.01.24 정승현 / 롤링페이퍼 호출 ( Home Page 메뉴에 사용 )
      */
@@ -36,7 +34,6 @@ public class RollingContoller {
     public List<RollingDTO> getRollingAllList() {
         return rollingService.getRollingAllList();
     }
-
 
 
     /*
@@ -48,7 +45,6 @@ public class RollingContoller {
     }
 
 
-
     /*
         2023.01.25 이수영 / 롤링페이퍼 추가 ( Rollingpaper Add 메뉴에 사용 )
      */
@@ -56,7 +52,6 @@ public class RollingContoller {
     public Long addPost(@Validated @RequestBody RollingDTO rollingDTO) {
         return rollingService.addPaper(rollingDTO);
     }
-
 
 
     /*
@@ -73,7 +68,6 @@ public class RollingContoller {
     }
 
 
-
     /*
         2023.01.25 정승현 / 검색으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에서 사용 )
      */
@@ -83,16 +77,11 @@ public class RollingContoller {
     }
 
 
-
     /*
-     2023.01.24 박현준 / 페이징으로 롤링페이퍼 호출 ( Rollingpaper List, Detail 메뉴에 사용 )
-  */
+     2022.01.24 박현준 / 롤링페이퍼 목록 호출
+    */
     @GetMapping("{id}")
     public ReplyListDTO getReplyList(@PathVariable("id") Long id) {
-        RollingDTO rolling = rollingService.getRolling(id);
-        String target = rolling.getTarget();
-        List<ReplyDTO> replyList = replyService.getReplyList(id);
-
-        return new ReplyListDTO(target, replyList);
+        return replyService.getReplyList(id);
     }
 }

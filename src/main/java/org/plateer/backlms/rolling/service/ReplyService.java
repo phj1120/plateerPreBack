@@ -1,10 +1,8 @@
 package org.plateer.backlms.rolling.service;
 
-import org.plateer.backlms.rolling.domain.Reply;
-import org.plateer.backlms.rolling.dto.ReplyDTO;
-
-import java.util.List;
+import org.plateer.backlms.rolling.dto.ReplyListDTO;
 
 public interface ReplyService {
-    List<ReplyDTO> getReplyList(Long rollingId);
+
+    ReplyListDTO getReplyList(Long rollingId);
 }

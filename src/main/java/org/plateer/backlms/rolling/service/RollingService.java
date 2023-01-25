@@ -6,7 +6,6 @@ import org.plateer.backlms.rolling.dto.RollingDTO;
 import org.plateer.backlms.rolling.dto.RollingSearchDTO;
 
 import java.util.List;
-import java.util.Map;
 
 public interface RollingService {
     // 페이징 처리된 롤링페이퍼 리스트 서비스
