@@ -52,6 +52,15 @@ public class RollingServiceImpl implements RollingService {
     }
 
     @Override
+    public Long addPaper(RollingDTO rollingDTO) {
+
+        Rolling rolling = modelMapper.map(rollingDTO, Rolling.class);
+
+        Long id = rollingRepository.save(rolling).getId();
+
+        return id;
+    }
+
     public PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO rollingSearchDTO) {
         Pageable pageable = pageReqDTO.getPageable(Sort.by("id").descending());
         Page<RollingDTO> result = rollingRepository.searchList(pageable, rollingSearchDTO);

@@ -25,7 +25,6 @@ public class Rolling {
     private String writer;
 
     private String target;
-
     private String imgSrc;
 
     private LocalDate createDt;
