@@ -12,7 +12,10 @@ import org.plateer.backlms.rolling.service.ReplyService;
 import org.plateer.backlms.rolling.service.RollingService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -24,40 +27,65 @@ public class RollingContoller {
     private final RollingService rollingService;
     private final ReplyService replyService;
 
+
+
+    /*
+        2023.01.24 정승현 / 롤링페이퍼 호출 ( Home Page 메뉴에 사용 )
+     */
     @GetMapping("getRollingAllList")
     public List<RollingDTO> getRollingAllList() {
         return rollingService.getRollingAllList();
     }
 
 
+
     /*
-        2022.01.24 정승현 / 페이징으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에 사용 )
+        2023.01.24 정승현 / 페이징으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에 사용 )
      */
     @GetMapping("getRollingList")
     public PageResultDTO<RollingDTO> getRollingList(PageReqDTO pageReqDTO) {
         return rollingService.getRollingList(pageReqDTO);
     }
 
-    //    01.25 이수영 롤링페이퍼 추가
+
+
+    /*
+        2023.01.25 이수영 / 롤링페이퍼 추가 ( Rollingpaper Add 메뉴에 사용 )
+     */
     @PostMapping("postRollingPaper")
     public Long addPost(@Validated @RequestBody RollingDTO rollingDTO) {
-        log.info("========== postRollingPaper ==========");
-
-        log.info(rollingDTO);
-
         return rollingService.addPaper(rollingDTO);
     }
 
+
+
     /*
-        2022.01.25 정승현 / 검색으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에서 사용 )
+        2023.01.25 정승현 / 롤링페이퍼 추가 시 첨부파일 저장 ( Rollingpaper Add 메뉴에 사용 )
+     */
+    @PostMapping("postRollingFile")
+    public String postRollingFile(@RequestParam("filelist") MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            String fullPath = "Z:/pre_project/" + file.getOriginalFilename();
+            file.transferTo(new File(fullPath));
+        }
+
+        return "test-form";
+    }
+
+
+
+    /*
+        2023.01.25 정승현 / 검색으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에서 사용 )
      */
     @GetMapping("getSearchRollingList")
     public PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO rollingSearchDTO) {
         return rollingService.getSearchRollingList(pageReqDTO, rollingSearchDTO);
     }
 
+
+
     /*
-     2022.01.24 박현준 / 페이징으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에 사용 )
+     2023.01.24 박현준 / 페이징으로 롤링페이퍼 호출 ( Rollingpaper List, Detail 메뉴에 사용 )
   */
     @GetMapping("{id}")
     public ReplyListDTO getReplyList(@PathVariable("id") Long id) {
