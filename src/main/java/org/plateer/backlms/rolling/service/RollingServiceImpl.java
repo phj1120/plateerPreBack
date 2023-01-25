@@ -7,6 +7,7 @@ import org.plateer.backlms.common.dto.PageReqDTO;
 import org.plateer.backlms.common.dto.PageResultDTO;
 import org.plateer.backlms.rolling.domain.Rolling;
 import org.plateer.backlms.rolling.dto.RollingDTO;
+import org.plateer.backlms.rolling.dto.RollingSearchDTO;
 import org.plateer.backlms.rolling.repository.RollingRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,6 +52,7 @@ public class RollingServiceImpl implements RollingService {
     }
 
     @Override
+<<<<<<< HEAD
     public Long addPaper(RollingDTO rollingDTO) {
 
         Rolling rolling = modelMapper.map(rollingDTO, Rolling.class);
@@ -60,4 +62,21 @@ public class RollingServiceImpl implements RollingService {
         return id;
     }
 
+=======
+    public PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO rollingSearchDTO) {
+        Pageable pageable = pageReqDTO.getPageable(Sort.by("id").descending());
+        Page<RollingDTO> result = rollingRepository.searchList(pageable, rollingSearchDTO);
+
+        List<RollingDTO> list = result.stream().map(arr -> {
+            RollingDTO rollingDTO = modelMapper.map(arr, RollingDTO.class);
+            return rollingDTO;
+        }).collect(Collectors.toList());
+
+
+        PageResultDTO<RollingDTO> pageResultDTO =
+                new PageResultDTO<>(list, pageable, result.getTotalElements(), result.getTotalPages() );
+
+        return pageResultDTO;
+    }
+>>>>>>> 89367a0e31aadca67e214e0b4e2d2b96cd1a115c
 }
