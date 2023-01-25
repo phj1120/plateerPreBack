@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.plateer.backlms.common.dto.PageReqDTO;
 import org.plateer.backlms.common.dto.PageResultDTO;
+import org.plateer.backlms.rolling.dto.ReplyDTO;
+import org.plateer.backlms.rolling.dto.ReplyListDTO;
 import org.plateer.backlms.rolling.dto.RollingDTO;
 import org.plateer.backlms.rolling.dto.RollingSearchDTO;
+import org.plateer.backlms.rolling.service.ReplyService;
 import org.plateer.backlms.rolling.service.RollingService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
 @Log4j2
 public class RollingContoller {
     private final RollingService rollingService;
+    private final ReplyService replyService;
 
     @GetMapping("getRollingAllList")
     public List<RollingDTO> getRollingAllList() {
@@ -52,4 +55,15 @@ public class RollingContoller {
         return rollingService.getSearchRollingList(pageReqDTO, rollingSearchDTO);
     }
 
+    /*
+     2022.01.24 박현준 / 페이징으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에 사용 )
+  */
+    @GetMapping("{id}")
+    public ReplyListDTO getReplyList(@PathVariable("id") Long id) {
+        RollingDTO rolling = rollingService.getRolling(id);
+        String target = rolling.getTarget();
+        List<ReplyDTO> replyList = replyService.getReplyList(id);
+
+        return new ReplyListDTO(target, replyList);
+    }
 }
