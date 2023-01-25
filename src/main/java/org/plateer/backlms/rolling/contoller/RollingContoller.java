@@ -10,6 +10,7 @@ import org.plateer.backlms.rolling.dto.RollingDTO;
 import org.plateer.backlms.rolling.dto.RollingSearchDTO;
 import org.plateer.backlms.rolling.service.ReplyService;
 import org.plateer.backlms.rolling.service.RollingService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
