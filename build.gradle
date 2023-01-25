@@ -1,3 +1,10 @@
+// QueryDsl
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.9-SNAPSHOT'
@@ -24,6 +31,12 @@ dependencies {
     // ModelMapper
     implementation 'org.modelmapper:modelmapper:3.1.0'
 
+    // QueryDsl
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    annotationProcessor("javax.persistence:javax.persistence-api",
+            "javax.annotation:javax.annotation-api",
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
@@ -35,6 +48,7 @@ dependencies {
     // TEST 코드 및 로그 등의 가능
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
+
 }
 
 tasks.named('test') {
