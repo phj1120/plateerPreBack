@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.plateer.backlms.rolling.RollingRepositoryTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-01-24T09:09:25" hostname="SEUNGHYEON-DESK" time="0.684">
+  <properties/>
+  <testcase name="testRollingInsert()" classname="org.plateer.backlms.rolling.RollingRepositoryTests" time="0.684"/>
+  <system-out><![CDATA[18:09:23.020 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+18:09:23.028 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+18:09:23.052 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [org.plateer.backlms.rolling.RollingRepositoryTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+18:09:23.060 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [org.plateer.backlms.rolling.RollingRepositoryTests], using SpringBootContextLoader
+18:09:23.063 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [org.plateer.backlms.rolling.RollingRepositoryTests]: class path resource [org/plateer/backlms/rolling/RollingRepositoryTests-context.xml] does not exist
+18:09:23.063 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [org.plateer.backlms.rolling.RollingRepositoryTests]: class path resource [org/plateer/backlms/rolling/RollingRepositoryTestsContext.groovy] does not exist
+18:09:23.063 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [org.plateer.backlms.rolling.RollingRepositoryTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+18:09:23.064 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [org.plateer.backlms.rolling.RollingRepositoryTests]: RollingRepositoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:09:23.092 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [org.plateer.backlms.rolling.RollingRepositoryTests]
+18:09:23.132 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [E:\DEV\project\Back-LMS\build\classes\java\main\org\plateer\backlms\BackLmsApplication.class]
+18:09:23.132 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration org.plateer.backlms.BackLmsApplication for test class org.plateer.backlms.rolling.RollingRepositoryTests
+18:09:23.205 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [org.plateer.backlms.rolling.RollingRepositoryTests]: using defaults.
+18:09:23.205 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+18:09:23.216 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1bc53649, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@88d6f9b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@47d93e0d, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@475b7792, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@751e664e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@160c3ec1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@182b435b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4d0402b, org.springframework.test.context.event.EventPublishingTestExecutionListener@2fa7ae9, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7577b641, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3704122f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3153ddfc, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@60afd40d, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@28a2a3e7, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3f2049b6]
+18:09:23.218 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@18e8473e testClass = RollingRepositoryTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@5a2f016d testClass = RollingRepositoryTests, locations = '{}', classes = '{class org.plateer.backlms.BackLmsApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@7c209437, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@19ae6bb, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2bb7bd00, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@14b030a0, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@27305e6, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@6531a794], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v2.7.9-SNAPSHOT)
+
+2023-01-24 18:09:23.457  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : Starting RollingRepositoryTests using Java 11.0.12 on Seunghyeon-Desktop with PID 2128 (started by Administrator in E:\DEV\project\Back-LMS)
+2023-01-24 18:09:23.458  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : No active profile set, falling back to 1 default profile: "default"
+2023-01-24 18:09:23.858  INFO 2128 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-24 18:09:23.900  INFO 2128 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 1 JPA repository interfaces.
+2023-01-24 18:09:24.239  INFO 2128 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-24 18:09:24.280  INFO 2128 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-01-24 18:09:24.401  INFO 2128 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-24 18:09:24.477  INFO 2128 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-24 18:09:24.533  INFO 2128 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-24 18:09:24.558  INFO 2128 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+Hibernate: 
+    
+    create table tbl_rolling (
+       rno bigint not null auto_increment,
+        create_dt date,
+        img_src varchar(255),
+        target varchar(255),
+        title varchar(255),
+        update_dt date,
+        writer varchar(255),
+        primary key (rno)
+    ) engine=InnoDB
+2023-01-24 18:09:25.028  INFO 2128 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-24 18:09:25.034  INFO 2128 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-24 18:09:25.429  WARN 2128 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-24 18:09:25.863  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : Started RollingRepositoryTests in 2.598 seconds (JVM running for 3.49)
+2023-01-24 18:09:25.955  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 1
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.017  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 2
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.026  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 3
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.032  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 4
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.042  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 5
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.048  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 6
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.053  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 7
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.065  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 8
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.075  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 9
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.079  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 10
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.088  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 11
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.095  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 12
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.102  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 13
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.108  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 14
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.113  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 15
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.124  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 16
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.136  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 17
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.142  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 18
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.146  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 19
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.150  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 20
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.154  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 21
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.158  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 22
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.161  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 23
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.165  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 24
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.169  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 25
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.173  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 26
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.176  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 27
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.180  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 28
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.183  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 29
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.187  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 30
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.190  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 31
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.193  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 32
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.196  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 33
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.200  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 34
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.203  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 35
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.211  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 36
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.215  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 37
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.219  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 38
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.223  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 39
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.227  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 40
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.230  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 41
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.234  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 42
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.240  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 43
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.249  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 44
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.254  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 45
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.257  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 46
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.260  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 47
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.263  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 48
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.268  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 49
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.271  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 50
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.274  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 51
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.277  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 52
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.281  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 53
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.285  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 54
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.289  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 55
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.292  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 56
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.295  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 57
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.302  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 58
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.309  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 59
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.311  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 60
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.314  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 61
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.317  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 62
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.320  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 63
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.325  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 64
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.329  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 65
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.332  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 66
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.335  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 67
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.338  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 68
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.341  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 69
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.344  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 70
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.346  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 71
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.349  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 72
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.352  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 73
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.355  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 74
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.358  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 75
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.361  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 76
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.371  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 77
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.375  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 78
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.378  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 79
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.381  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 80
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.384  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 81
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.386  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 82
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.389  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 83
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.391  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 84
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.394  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 85
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.397  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 86
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.400  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 87
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.406  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 88
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.410  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 89
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.415  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 90
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.418  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 91
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.423  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 92
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.426  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 93
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.429  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 94
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.435  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 95
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.438  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 96
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.441  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 97
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.444  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 98
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.447  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 99
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.450  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 100
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.453  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 101
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.456  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 102
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.459  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 103
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.463  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 104
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.466  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 105
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.469  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 106
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.472  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 107
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.475  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 108
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.479  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 109
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.488  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 110
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.492  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 111
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.496  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 112
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.499  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 113
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.502  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 114
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.509  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 115
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.513  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 116
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.516  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 117
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.524  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 118
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.532  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 119
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.540  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 120
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.542  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 121
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.545  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 122
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.547  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 123
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.551  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 124
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2023-01-24 18:09:26.553  INFO 2128 --- [    Test worker] o.p.b.rolling.RollingRepositoryTests     : 125
+Hibernate: 
+    insert 
+    into
+        tbl_rolling
+        (create_dt, img_src, target, title, update_dt, writer) 
+    values
+        (?, ?, ?, ?, ?, ?)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
