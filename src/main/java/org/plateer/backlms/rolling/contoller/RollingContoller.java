@@ -23,8 +23,6 @@ public class RollingContoller {
     
     @GetMapping("getRollingAllList")
     public List<RollingDTO> getRollingAllList() {
-        log.info(rollingService.getRollingAllList());
-
         return rollingService.getRollingAllList();
     }
 
