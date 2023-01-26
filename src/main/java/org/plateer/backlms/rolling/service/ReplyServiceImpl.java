@@ -8,17 +8,20 @@ import org.plateer.backlms.rolling.domain.Reply;
 import org.plateer.backlms.rolling.domain.Rolling;
 import org.plateer.backlms.rolling.dto.ReplyDTO;
 import org.plateer.backlms.rolling.dto.SaveReplyRequestDTO;
+import org.plateer.backlms.rolling.dto.UpdateReplyDTO;
 import org.plateer.backlms.rolling.repository.MemberRepository;
 import org.plateer.backlms.rolling.repository.ReplyRepository;
 import org.plateer.backlms.rolling.repository.RollingRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Log4j2
+@Transactional
 public class ReplyServiceImpl implements ReplyService {
 
     private final ReplyRepository replyRepository;
@@ -52,4 +55,21 @@ public class ReplyServiceImpl implements ReplyService {
         replyRepository.save(reply);
 
     }
+
+    @Override
+    public void deleteReply(long id) {
+        replyRepository.deleteById(id);
+    }
+
+    @Override
+
+    public ReplyDTO updateReply(long id, UpdateReplyDTO updateReplyDTO) {
+        Reply reply =  replyRepository.findById(id).orElseThrow();
+
+
+
+        return new ReplyDTO(reply.updateReply(updateReplyDTO));
+    }
+
+
 }

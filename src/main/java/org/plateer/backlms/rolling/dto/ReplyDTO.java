@@ -14,9 +14,12 @@ public class ReplyDTO {
     private String title;
     private String writer;
 
+    private String content;
+
     public ReplyDTO(Reply reply) {
         this.id = reply.getId();
         this.title = reply.getTitle();
         this.writer = reply.getWriter().getMemberName();
+        this.content = reply.getContent();
     }
 }
