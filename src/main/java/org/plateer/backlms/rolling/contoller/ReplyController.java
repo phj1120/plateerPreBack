@@ -31,6 +31,9 @@ public class ReplyController {
         return ResponseEntity.ok("백앤드 추가 완료");
     }
 
+    /*
+    2023.01.26 주호승 / 롤링페이퍼 댓글 삭제
+ */
     @DeleteMapping("{id}")
     public ResponseEntity deleteReply(@PathVariable("id") long id){
 
@@ -38,6 +41,9 @@ public class ReplyController {
         return ResponseEntity.ok("백앤드 삭제 완료");
     }
 
+    /*
+    2023.01.26 주호승 / 롤링페이퍼 댓글 수정
+ */
     @PutMapping("{id}")
     public ResponseEntity updateReply(@PathVariable("id") long id,
                                       @RequestBody @Validated UpdateReplyDTO updateReplyDTO){

@@ -55,14 +55,19 @@ public class ReplyServiceImpl implements ReplyService {
         replyRepository.save(reply);
 
     }
-
+    
+    /*
+     2023.01.26 주호승 / 댓글 삭제 service
+    */
     @Override
     public void deleteReply(long id) {
         replyRepository.deleteById(id);
     }
 
+    /*
+     2023.01.26 주호승 / 댓글 수정 service
+    */
     @Override
-
     public ReplyDTO updateReply(long id, UpdateReplyDTO updateReplyDTO) {
         Reply reply =  replyRepository.findById(id).orElseThrow();
 
