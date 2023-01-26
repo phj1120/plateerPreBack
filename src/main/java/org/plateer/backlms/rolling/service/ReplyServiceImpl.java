@@ -1,6 +1,8 @@
 package org.plateer.backlms.rolling.service;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.plateer.backlms.rolling.dto.ReplyListDTO;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.plateer.backlms.rolling.domain.Member;
@@ -27,18 +29,19 @@ public class ReplyServiceImpl implements ReplyService {
     private final ReplyRepository replyRepository;
     private final RollingRepository rollingRepository;
     private final MemberRepository memberRepository;
-
     private final ModelMapper modelMapper;
 
     @Override
-    public List<ReplyDTO> getReplyList(Long rollingId) {
+    public ReplyListDTO getReplyList(Long rollingId) {
         Rolling rolling = rollingRepository.findById(rollingId).orElseThrow();
+        String target = rolling.getTarget();
         List<Reply> replyList = replyRepository.findAllByRolling(rolling);
         List<ReplyDTO> replyDTOList = replyList.stream()
-                .map((reply -> new ReplyDTO(reply)))
+//                .map((reply -> new ReplyDTO(reply)))
+                .map((reply -> modelMapper.map(reply, ReplyDTO.class)))
                 .collect(Collectors.toList());
 
-        return replyDTOList;
+        return new ReplyListDTO(target, replyDTOList);
     }
 
     /*

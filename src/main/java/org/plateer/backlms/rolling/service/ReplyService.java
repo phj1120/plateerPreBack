@@ -1,5 +1,6 @@
 package org.plateer.backlms.rolling.service;
 
+
 import org.plateer.backlms.rolling.domain.Reply;
 import org.plateer.backlms.rolling.dto.ReplyDTO;
 import org.plateer.backlms.rolling.dto.SaveReplyRequestDTO;
@@ -24,4 +25,5 @@ public interface ReplyService {
       2023.01.26 주호승 / 댓글 수정 service
    */
     ReplyDTO updateReply(long id, UpdateReplyDTO updateReplyDTO);
+
 }
