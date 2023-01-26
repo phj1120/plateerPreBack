@@ -6,6 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.plateer.backlms.common.dto.PageReqDTO;
 import org.plateer.backlms.common.dto.PageResultDTO;
 import org.plateer.backlms.rolling.domain.Rolling;
+import org.plateer.backlms.rolling.dto.ReplyDTO;
+import org.plateer.backlms.rolling.dto.ReplyListDTO;
 import org.plateer.backlms.rolling.dto.RollingDTO;
 import org.plateer.backlms.rolling.dto.RollingSearchDTO;
 import org.plateer.backlms.rolling.repository.RollingRepository;
@@ -90,4 +92,5 @@ public class RollingServiceImpl implements RollingService {
                 .imgSrc(rolling.getImgSrc())
                 .build();
     }
+
 }

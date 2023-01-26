@@ -1,6 +1,7 @@
 package org.plateer.backlms.rolling.domain;
 
 import lombok.*;
+import org.plateer.backlms.rolling.dto.UpdateReplyDTO;
 
 import javax.persistence.*;
 
@@ -26,4 +27,17 @@ public class Reply {
 
     @ManyToOne
     private Rolling rolling;
+
+    public Reply(String title, String content, Member writer, Rolling rolling) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.rolling = rolling;
+    }
+
+    public Reply updateReply(UpdateReplyDTO updateReplyDTO){
+        this.title = updateReplyDTO.getTitle();
+        this.content = updateReplyDTO.getContent();
+        return this;
+    }
 }
