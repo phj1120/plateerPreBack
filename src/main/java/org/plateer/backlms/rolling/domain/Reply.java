@@ -26,4 +26,11 @@ public class Reply {
 
     @ManyToOne
     private Rolling rolling;
+
+    public Reply(String title, String content, Member writer, Rolling rolling) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.rolling = rolling;
+    }
 }

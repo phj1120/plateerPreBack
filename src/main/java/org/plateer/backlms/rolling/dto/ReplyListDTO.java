@@ -18,4 +18,5 @@ public class ReplyListDTO {
         this.targetName = targetName;
         this.replyDTOs = replyDTOs;
     }
+
 }
