@@ -57,13 +57,17 @@ public class RollingContoller {
     /*
         2023.01.25 정승현 / 롤링페이퍼 추가 시 첨부파일 저장 ( Rollingpaper Add 메뉴에 사용 )
      */
-    @PostMapping("postRollingFile")
-    public String postRollingFile(@RequestParam("filelist") MultipartFile file) throws IOException {
-        if (!file.isEmpty()) {
-            String fullPath = "Z:/pre_project/" + file.getOriginalFilename();
-            file.transferTo(new File(fullPath));
-        }
 
+    @PostMapping("postRollingFile")
+    public String postRollingFile(@RequestParam("filelist") List<MultipartFile> files) throws IOException {
+        if (!files.isEmpty()) {
+            for (MultipartFile file : files) {
+                String fullPath = "C:/dev/plateer/rolling/image/" + file.getOriginalFilename();
+//                String fullPath = "D:/" + file.getOriginalFilename();
+                file.getOriginalFilename();
+                file.transferTo(new File(fullPath));
+            }
+        }
         return "test-form";
     }
 
@@ -72,7 +76,8 @@ public class RollingContoller {
         2023.01.25 정승현 / 검색으로 롤링페이퍼 호출 ( Rollingpaper List 메뉴에서 사용 )
      */
     @GetMapping("getSearchRollingList")
-    public PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO rollingSearchDTO) {
+    public PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO
+            rollingSearchDTO) {
         return rollingService.getSearchRollingList(pageReqDTO, rollingSearchDTO);
     }
 
