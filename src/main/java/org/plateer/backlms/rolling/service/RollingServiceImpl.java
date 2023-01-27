@@ -26,22 +26,7 @@ public class RollingServiceImpl implements RollingService {
     private final ModelMapper modelMapper;
     private final RollingRepository rollingRepository;
 
-    @Override
-    public PageResultDTO<RollingDTO> getRollingList(PageReqDTO pageReqDTO) {
-        Pageable pageable = pageReqDTO.getPageable(Sort.by("id").descending());
-        // querydsl 로
-        Page<Rolling> result = rollingRepository.findAll(pageable);
 
-        List<RollingDTO> list = result.stream().map(arr -> {
-            RollingDTO rollingDTO = modelMapper.map(arr, RollingDTO.class);
-            return rollingDTO;
-        }).collect(Collectors.toList());
-
-        PageResultDTO<RollingDTO> pageResultDTO =
-                new PageResultDTO<>(list, pageable, result.getTotalElements(), result.getTotalPages());
-
-        return pageResultDTO;
-    }
 
     @Override
     public List<RollingDTO> getRollingAllList() {
@@ -54,15 +39,25 @@ public class RollingServiceImpl implements RollingService {
         return list;
     }
 
+
+
     @Override
-    public Long addPaper(RollingDTO rollingDTO) {
+    public PageResultDTO<RollingDTO> getRollingList(PageReqDTO pageReqDTO) {
+        Pageable pageable = pageReqDTO.getPageable(Sort.by("id").descending());
+        Page<RollingDTO> result = rollingRepository.getRollingList(pageable);
 
-        Rolling rolling = modelMapper.map(rollingDTO, Rolling.class);
+        List<RollingDTO> list = result.stream().map(arr -> {
+            RollingDTO rollingDTO = modelMapper.map(arr, RollingDTO.class);
+            return rollingDTO;
+        }).collect(Collectors.toList());
 
-        Long id = rollingRepository.save(rolling).getId();
+        PageResultDTO<RollingDTO> pageResultDTO =
+                new PageResultDTO<>(list, pageable, result.getTotalElements(), result.getTotalPages());
 
-        return id;
+        return pageResultDTO;
     }
+
+
 
     public PageResultDTO<RollingDTO> getSearchRollingList(PageReqDTO pageReqDTO, RollingSearchDTO rollingSearchDTO) {
         Pageable pageable = pageReqDTO.getPageable(Sort.by("id").descending());
@@ -91,6 +86,18 @@ public class RollingServiceImpl implements RollingService {
                 .target(rolling.getTarget())
                 .imgSrc(rolling.getImgSrc())
                 .build();
+    }
+
+
+
+    @Override
+    public Long addPaper(RollingDTO rollingDTO) {
+
+        Rolling rolling = modelMapper.map(rollingDTO, Rolling.class);
+
+        Long id = rollingRepository.save(rolling).getId();
+
+        return id;
     }
 
 }

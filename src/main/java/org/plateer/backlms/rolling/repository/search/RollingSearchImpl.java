@@ -22,6 +22,38 @@ public class RollingSearchImpl extends QuerydslRepositorySupport implements Roll
         super(Rolling.class);
     }
 
+
+
+    @Override
+    public Page<RollingDTO> getRollingList(Pageable pageable) {
+        QRolling rolling = QRolling.rolling;
+        QReply reply = QReply.reply;
+
+        JPQLQuery<Rolling> query = from(rolling);
+        query.leftJoin(reply).on(rolling.eq(reply.rolling)).groupBy(rolling);
+        query.orderBy(rolling.id.asc());
+        getQuerydsl().applyPagination(pageable, query);
+
+        JPQLQuery<RollingDTO> projectJPQLQuery = query.select(Projections.bean(
+                RollingDTO.class,
+                rolling.id,
+                rolling.title,
+                rolling.writer,
+                rolling.target,
+                rolling.imgSrc,
+                reply.countDistinct().as("replyCount"),
+                rolling.createDt,
+                rolling.updateDt
+        ));
+
+        List<RollingDTO> dtoList = projectJPQLQuery.fetch();
+        long count = projectJPQLQuery.fetchCount();
+
+        return new PageImpl<>(dtoList, pageable, count);
+    }
+
+
+
     @Override
     public Page<RollingDTO> searchList(Pageable pageable, RollingSearchDTO searchDTO) {
         QRolling rolling = QRolling.rolling;
