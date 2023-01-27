@@ -9,4 +9,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface RollingSearch {
     Page<RollingDTO> searchList(Pageable pageable, RollingSearchDTO rollingSearchDTO);
+
+    Page<RollingDTO> getRollingList(Pageable pageable);
 }
