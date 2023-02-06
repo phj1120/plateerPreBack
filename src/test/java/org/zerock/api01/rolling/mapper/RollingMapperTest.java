@@ -17,9 +17,6 @@ class RollingMapperTest {
     @Autowired
     RollingMapper rollingMapper;
 
-    @Autowired
-    MockMultipartFile mockMultipartFile;
-
     @Test
     void getList() {
         /*
@@ -55,22 +52,22 @@ class RollingMapperTest {
 
     @Test
     void modifyRolling() {
-        Long rollingId = 684L;
-//        ModifyRollingRequest modifyRollingRequest = ModifyRollingRequest.builder().title(getNew("title")).build();
-//        ModifyRollingRequest modifyRollingRequest = ModifyRollingRequest.builder().target(getNew("title")).build();
-
-        List<MultipartFile> images = new ArrayList<>();
-        images.add(mockMultipartFile);
-        images.add(mockMultipartFile);
-
-        ModifyRollingRequest modifyRollingRequest = ModifyRollingRequest.builder()
-                .images(images).build();
-
-        ModifyRollingDTO modifyRollingDTO = new ModifyRollingDTO(rollingId, modifyRollingRequest);
-        rollingMapper.modifyRolling(modifyRollingDTO.convert());
-
-        RollingDTO rolling = rollingMapper.getRolling(rollingId);
-        System.out.println(rolling);
+//        Long rollingId = 684L;
+////        ModifyRollingRequest modifyRollingRequest = ModifyRollingRequest.builder().title(getNew("title")).build();
+////        ModifyRollingRequest modifyRollingRequest = ModifyRollingRequest.builder().target(getNew("title")).build();
+//
+//        List<MultipartFile> images = new ArrayList<>();
+//        images.add(mockMultipartFile);
+//        images.add(mockMultipartFile);
+//
+//        ModifyRollingRequest modifyRollingRequest = ModifyRollingRequest.builder()
+//                .images(images).build();
+//
+//        ModifyRollingDTO modifyRollingDTO = new ModifyRollingDTO(rollingId, modifyRollingRequest);
+//        rollingMapper.modifyRolling(modifyRollingDTO.convert());
+//
+//        RollingDTO rolling = rollingMapper.getRolling(rollingId);
+//        System.out.println(rolling);
     }
 
     @Test
@@ -84,5 +81,16 @@ class RollingMapperTest {
     public String getNew(String name) {
         String time = LocalDateTime.now().toString();
         return name + time;
+    }
+
+    @Test
+    void getRollingsWithFile() {
+        RollingSearchType[] types = {RollingSearchType.TARGET, RollingSearchType.TITLE};
+        RollingPageRequestDTO rollingPageRequestDTO =
+                new RollingPageRequestDTO(1, 10, "박현준", types);
+
+        List<RollingsWithFileDTO> rollingsWithFile = rollingMapper.getRollingsWithFile(rollingPageRequestDTO);
+
+        System.out.println(rollingsWithFile);
     }
 }

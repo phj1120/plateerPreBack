@@ -40,6 +40,22 @@ public class RollingServiceImpl implements RollingService {
     }
 
     @Override
+    public PageResultDTO<RollingInfoDTO> getRollingsWithFile(RollingPageRequestDTO rollingPageRequestDTO) {
+        int total = rollingMapper.getCount(rollingPageRequestDTO);
+        List<RollingInfoDTO> dtoList = rollingMapper.getRollingsWithFile(rollingPageRequestDTO).stream()
+                .map(rollingsWithFileDTO -> new RollingInfoDTO(rollingsWithFileDTO))
+                .collect(Collectors.toList());
+
+        PageResultDTO<RollingInfoDTO> pageResponseDTO = PageResultDTO.<RollingInfoDTO>withAll()
+                .dtoList(dtoList)
+                .total(total)
+                .pageRequestDTO(rollingPageRequestDTO)
+                .build();
+
+        return pageResponseDTO;
+    }
+
+    @Override
     public RollingWithImageNameDTO getRolling(Long id) {
         RollingDTO rollingDTO = rollingMapper.getRolling(id);
         if (rollingDTO == null) {

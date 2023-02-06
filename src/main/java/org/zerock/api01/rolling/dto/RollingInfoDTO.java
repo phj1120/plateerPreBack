@@ -38,4 +38,21 @@ public class RollingInfoDTO {
             this.imgSrc = "s_0e1249ad-38c1-4fd9-a4f5-7360cb4464d4.jpg";
         }
     }
+
+
+    public RollingInfoDTO(RollingsWithFileDTO rollingsWithFileDTO) {
+        this.id = rollingsWithFileDTO.getId();
+        this.title = rollingsWithFileDTO.getTitle();
+        this.target = rollingsWithFileDTO.getTarget();
+        this.writer = rollingsWithFileDTO.getWriter();
+        this.createDt = rollingsWithFileDTO.getCreateDt();
+        this.updateDt = rollingsWithFileDTO.getUpdateDt();
+        this.imgSrc = rollingsWithFileDTO.getThumbnail();
+        // 이미지 기본 경로 추가
+        if (rollingsWithFileDTO.getThumbnail() == null) {
+            this.imgSrc = "s_0e1249ad-38c1-4fd9-a4f5-7360cb4464d4.jpg";
+        }
+    }
+
+
 }
