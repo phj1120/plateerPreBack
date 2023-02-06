@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-=======
 # Created by https://www.toptal.com/developers/gitignore/api/intellij+all,eclipse,java,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+all,eclipse,java,macos
+
+images
 
 ### Eclipse ###
 .metadata
@@ -218,7 +218,6 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,eclipse,java,macos
 
->>>>>>> 3982f80a706616345340ebf3e9195e224cf504b7
 HELP.md
 .gradle
 build/
