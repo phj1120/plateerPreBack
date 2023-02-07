@@ -47,14 +47,13 @@
         where rolling_id = #{id} and del_flag = false
     </select>
 
-    <insert id="addRolling"
-            useGeneratedKeys="true" keyProperty="rollingId" >
+    <insert id="addRolling">
+        <selectKey  keyProperty="rollingId" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into tbl_rolling (title, target, img_src, create_dt, writer_member_id)
         value (#{title}, #{target}, #{imgSrc}, #{createDt}, #{writerMemberId})
-        <selectKey keyProperty="rolling_id" resultType="Long">
-            select rolling_id()
 
-        </selectKey>
     </insert>
 
     <update id="modifyRolling">

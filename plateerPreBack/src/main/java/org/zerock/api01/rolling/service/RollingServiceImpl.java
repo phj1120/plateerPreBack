@@ -46,11 +46,16 @@ public class RollingServiceImpl implements RollingService {
     @Override
     public Long addRolling(RollingDTO rollingDTO) {
         // 롤링 저장
-        Long rollingId = rollingMapper.addRolling(rollingDTO);
-
+        rollingMapper.addRolling(rollingDTO);
+        log.info("====================================");
+        log.info("====================================");
+        log.info("====================================");
+        Long rollingId = rollingDTO.getRollingId();
+        log.info(rollingId);
         // 파일 저장
         rollingDTO.getFiles().stream().forEach(rollingFileDTO -> {
             rollingFileDTO.setRno(rollingId);
+            log.info(rollingFileDTO);
             fileMapper.addFile(rollingFileDTO);
         });
 

@@ -10,8 +10,8 @@
     </select>
 
     <insert id="addFile">
-        insert into tbl_file (file_name, original_name, file_size)
-        value (#{fileName}, #{originalName}, #{fileSize})
+        insert into tbl_file (file_name, original_name, file_size, rno)
+        value (#{fileName}, #{originalName}, #{fileSize}, #{rno})
     </insert>
 
     <update id="setRollingId">
