@@ -50,12 +50,12 @@ public class RollingServiceImpl implements RollingService {
         log.info("====================================");
         log.info("====================================");
         log.info("====================================");
+        log.info(rollingDTO);
         Long rollingId = rollingDTO.getRollingId();
         log.info(rollingId);
         // 파일 저장
         rollingDTO.getFiles().stream().forEach(rollingFileDTO -> {
             rollingFileDTO.setRno(rollingId);
-            log.info(rollingFileDTO);
             fileMapper.addFile(rollingFileDTO);
         });
 
@@ -64,12 +64,30 @@ public class RollingServiceImpl implements RollingService {
 
     @Override
     public Long modifyRolling(RollingDTO rollingDTO) {
-        return 0L;
+
+        // 롤링 DB 저장
+        rollingMapper.modifyRolling(rollingDTO);
+
+        Long rollingId = rollingDTO.getRollingId();
+
+        // 파일 저장
+        rollingDTO.getFiles().stream().forEach(rollingFileDTO -> {
+            rollingFileDTO.setRno(rollingId);
+            fileMapper.addFile(rollingFileDTO);
+        });
+
+        return rollingId;
+    }
+
+    public Long deleteFile(Long rollingId) {
+
+        return fileMapper.deleteImageByRollingId(rollingId);
     }
 
     @Override
     public Long deleteRolling(Long id) {
-        return 0L;
+        deleteFile(id);
 
+        return rollingMapper.deleteRolling(id);
     }
 }

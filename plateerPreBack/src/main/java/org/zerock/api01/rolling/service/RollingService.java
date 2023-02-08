@@ -16,4 +16,6 @@ public interface RollingService {
 
     Long deleteRolling(Long id);
 
+    Long deleteFile(Long rollingId);
+
 }

@@ -36,7 +36,9 @@ public class RollingDTO {
     public RollingDTO(RollingMultipartDTO rollingMultipartDTO, List<RollingFileDTO> rollingFileDTOList) {
         this.title = rollingMultipartDTO.getTitle();
         this.target = rollingMultipartDTO.getTarget();
-        this.imgSrc = rollingFileDTOList.get(rollingMultipartDTO.getThumbnailIndex()).getFileName();
+        if(!rollingFileDTOList.isEmpty()) {
+            this.imgSrc = "s_" + rollingFileDTOList.get(rollingMultipartDTO.getThumbnailIndex()).getFileName();
+        }
         this.files = rollingFileDTOList;
     }
 }

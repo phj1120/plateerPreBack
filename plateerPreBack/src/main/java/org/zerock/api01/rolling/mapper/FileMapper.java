@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface FileMapper {
 
-    int addFile(RollingFileDTO rollingFileDTO);
+    Long addFile(RollingFileDTO rollingFileDTO);
 
     List<RollingFileDTO> getRollingFileList(Long id);
+
+    Long deleteImageByRollingId(Long id);
 }

@@ -53,7 +53,6 @@
         </selectKey>
         insert into tbl_rolling (title, target, img_src, create_dt, writer_member_id)
         value (#{title}, #{target}, #{imgSrc}, #{createDt}, #{writerMemberId})
-
     </insert>
 
     <update id="modifyRolling">
@@ -65,9 +64,7 @@
             <if test="target != null">
                 target = #{target},
             </if>
-            <if test="imgSrc != null">
                 img_src = #{imgSrc},
-            </if>
             <if test="true">
                 update_dt = #{updateDt}
             </if>
@@ -79,7 +76,8 @@
         UPDATE
         tbl_rolling
         SET
-        del_flag = true
+        del_flag = true,
+        img_Src = ""
         WHERE
         rolling_id = #{id}
     </update>

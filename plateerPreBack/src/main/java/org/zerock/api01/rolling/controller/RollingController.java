@@ -12,6 +12,7 @@ import org.zerock.api01.rolling.dto.RollingPageRequestDTO;
 import org.zerock.api01.rolling.service.RollingService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Log4j2
@@ -36,27 +37,42 @@ public class RollingController {
     }
 
     @PostMapping
-    public Long addRolling(RollingMultipartDTO rollingMultipartDTO) {
+    public Map<String,Long> addRolling(RollingMultipartDTO rollingMultipartDTO) {
 
         List<RollingFileDTO> fileNames = imageUtil.saveImages(rollingMultipartDTO.getImages());
 
         RollingDTO rollingDTO = new RollingDTO(rollingMultipartDTO, fileNames);
 
-        return rollingService.addRolling(rollingDTO);
+        Long result =  rollingService.addRolling(rollingDTO);
+
+        return Map.of("result",result);
     }
 
     @PutMapping("/{id}")
-    public Long modifyRolling(@PathVariable Long id, RollingMultipartDTO rollingMultipartDTO) {
+    public Map<String, Long> modifyRolling(@PathVariable Long id, RollingMultipartDTO rollingMultipartDTO) {
 
-        RollingDTO rollingDTO = null;
+        // 이전 파일 삭제
+        rollingService.deleteFile(id);
 
-        return rollingService.modifyRolling(rollingDTO);
+        // 새로운 파일 저장
+        List<RollingFileDTO> fileNames = imageUtil.saveImages(rollingMultipartDTO.getImages());
+
+        RollingDTO rollingDTO = new RollingDTO(rollingMultipartDTO, fileNames);
+
+        // id 추가
+        rollingDTO.setRollingId(id);
+
+        Long result =  rollingService.modifyRolling(rollingDTO);
+
+        return Map.of("result", result);
     }
 
     @DeleteMapping("/{id}")
-    public Long deleteRolling(@PathVariable Long id) {
+    public Map<String, Long> deleteRolling(@PathVariable Long id) {
 
-        return rollingService.deleteRolling(id);
+        Long result = rollingService.deleteRolling(id);
+
+        return Map.of("result", result);
     }
 
 
