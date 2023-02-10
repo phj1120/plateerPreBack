@@ -17,57 +17,6 @@
         </foreach>
     </sql>
 
-<!--    <select id="getRollingsWithFile"-->
-<!--            resultType="org.zerock.api01.rolling.dto.RollingsWithFileDTO">-->
-<!--        SELECT-->
-<!--            tro.rolling_id as id,-->
-<!--            tro.target as target,-->
-<!--            tro.title as title,-->
-<!--            tro.create_dt as createDt,-->
-<!--            tro.update_dt as updateDt,-->
-<!--            tro.writer_member_id as writer,-->
-<!--            tf.file_name as thumbnail-->
-<!--        FROM-->
-<!--            tbl_rolling tro INNER JOIN tbl_file tf ON tf.rno = tro.rolling_id-->
-<!--        WHERE-->
-<!--            tro.del_flag = FALSE-->
-<!--            <if test="keyword != null and types != null">-->
-<!--                <include refid="search"></include>-->
-<!--            </if>-->
-<!--        GROUP BY tro.rolling_id-->
-<!--    </select>-->
-
-    <resultMap id="rollingsWithFile" type="org.zerock.api01.rolling.dto.RollingsWithFileDTO">
-        <id property="id" column="rolling_id"/>
-        <result property="target" column="target"/>
-        <result property="title" column="title"/>
-        <result property="createDt" column="create_dt"/>
-        <result property="updateDt" column="update_dt"/>
-        <result property="writer" column="writer_member_id"/>
-        <result property="thumbnail" column="file_name"/>
-    </resultMap>
-
-    <select id="getRollingsWithFile"
-            resultMap="rollingsWithFile">
-        SELECT
-            tro.rolling_id,
-            tro.target,
-            tro.title,
-            tro.create_dt,
-            tro.update_dt,
-            tro.writer_member_id,
-            tf.file_name
-        FROM
-            tbl_rolling tro INNER JOIN tbl_file tf ON tf.rno = tro.rolling_id
-        WHERE
-        tro.del_flag = FALSE
-        <if test="keyword != null and types != null">
-            <include refid="search"></include>
-        </if>
-        GROUP BY tro.rolling_id
-    </select>
-
-
     <select id="getList"
             resultType="RollingDTO">
         select *
@@ -98,8 +47,10 @@
         where rolling_id = #{id} and del_flag = false
     </select>
 
-    <insert id="addRolling"
-            useGeneratedKeys="true" keyProperty="rollingId">
+    <insert id="addRolling">
+        <selectKey  keyProperty="rollingId" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into tbl_rolling (title, target, img_src, create_dt, writer_member_id)
         value (#{title}, #{target}, #{imgSrc}, #{createDt}, #{writerMemberId})
     </insert>
@@ -113,9 +64,7 @@
             <if test="target != null">
                 target = #{target},
             </if>
-            <if test="imgSrc != null">
                 img_src = #{imgSrc},
-            </if>
             <if test="true">
                 update_dt = #{updateDt}
             </if>
@@ -127,13 +76,10 @@
         UPDATE
         tbl_rolling
         SET
-        del_flag = true
+        del_flag = true,
+        img_Src = ""
         WHERE
         rolling_id = #{id}
     </update>
 
-    <delete id="deleteImageByRollingId">
-        DELETE FROM tbl_file
-        WHERE rno = #{id}
-    </delete>
 </mapper>

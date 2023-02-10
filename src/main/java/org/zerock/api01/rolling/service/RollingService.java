@@ -1,17 +1,21 @@
 package org.zerock.api01.rolling.service;
 
 import org.zerock.api01.common.dto.PageResultDTO;
-import org.zerock.api01.rolling.dto.*;
+import org.zerock.api01.rolling.dto.RollingDTO;
+import org.zerock.api01.rolling.dto.RollingPageRequestDTO;
 
 public interface RollingService {
-    PageResultDTO<RollingInfoDTO> getList(RollingPageRequestDTO rollingPageRequestDTO);
-    PageResultDTO<RollingInfoDTO> getRollingsWithFile(RollingPageRequestDTO rollingPageRequestDTO);
 
-    RollingWithImageNameDTO getRolling(Long id);
+    PageResultDTO<RollingDTO> getRollingList(RollingPageRequestDTO rollingPageRequestDTO);
 
-    RollingInfoDTO addRolling(AddRollingDTO addRollingDTO);
+    RollingDTO getRolling(Long id);
 
-    RollingWithImageNameDTO modifyRolling(ModifyRollingDTO modifyRollingDTO);
+    Long addRolling(RollingDTO rollingDTO);
 
-    void deleteRolling(Long id);
+    Long modifyRolling(RollingDTO rollingDTO);
+
+    Long deleteRolling(Long id);
+
+    Long deleteFile(Long rollingId);
+
 }
