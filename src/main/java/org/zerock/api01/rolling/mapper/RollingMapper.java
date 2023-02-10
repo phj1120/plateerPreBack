@@ -6,15 +6,17 @@ import org.zerock.api01.rolling.dto.RollingPageRequestDTO;
 import java.util.List;
 
 public interface RollingMapper {
-    int getCount(RollingPageRequestDTO rollingPageRequestDTO);
 
     List<RollingDTO> getList(RollingPageRequestDTO rollingPageRequestDTO);
 
+    int getCount(RollingPageRequestDTO rollingPageRequestDTO);
+
     RollingDTO getRolling(Long id);
 
-    int addRolling(RollingDTO rollingDTO);
+    Long addRolling(RollingDTO rollingDTO);
 
-    int modifyRolling(RollingDTO rollingDTO);
+    Long modifyRolling(RollingDTO rollingDTO);
 
-    int deleteRolling(Long rollingId);
+    Long deleteRolling(Long id);
+
 }

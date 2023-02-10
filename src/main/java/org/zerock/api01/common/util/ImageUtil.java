@@ -1,38 +1,32 @@
-package org.zerock.api01.common.image;
+package org.zerock.api01.common.util;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import org.zerock.api01.common.image.dto.FileDTO;
-import org.zerock.api01.common.image.dto.SaveResult;
-import org.zerock.api01.common.image.mapper.FileMapper;
+import org.zerock.api01.rolling.dto.RollingFileDTO;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
-@Slf4j
-@Service
-@RequiredArgsConstructor
-public class ImageService {
-
-    private final FileMapper fileMapper;
+@Log4j2
+@Component
+public class ImageUtil {
 
     @Value("${basePath}")
     private String basePath;
 
 
     // Rolling ID에 해당하는 이미지 Path 조회
-    public Set<String> getImagePaths(Long rollingId) {
-        return fileMapper.getImagePaths(rollingId);
-    }
+//    public Set<String> getImagePaths(Long rollingId) {
+//        return fileMapper.getImagePaths(rollingId);
+//    }
 
     // 이미지 경로에 해당하는 이미지 조회
     public Resource readImage(String storedName) {
@@ -48,46 +42,46 @@ public class ImageService {
     }
 
     // 해당하는 사진에 rolling id 저장
-    public void setRollingId(Long id, Set<String> names) {
-        fileMapper.setRollingId(id, names);
-    }
+//    public void setRollingId(Long id, Set<String> names) {
+//        fileMapper.setRollingId(id, names);
+//    }
 
     // Rolling Id 에 해당하는 사진 DB 에서 삭제
-    public void deleteImage(Long rollingId) {
-        fileMapper.deleteImageByRollingId(rollingId);
-    }
+//    public void deleteImage(Long rollingId) {
+//        fileMapper.deleteImageByRollingId(rollingId);
+//    }
 
     // 이미지 저장 후 저장 결과 반환
-    public SaveResult saveImages(List<MultipartFile> files) {
+    public List<RollingFileDTO> saveImages(List<MultipartFile> files) {
         initFolder();
 
-        SaveResult saveResult = new SaveResult();
+        List<RollingFileDTO> fileNames = new ArrayList<>();
         for (int i = 0; i < files.size(); i++) {
             MultipartFile file = files.get(i);
             try {
-                String savedPath = saveImage(file);
-                saveResult.success(i, savedPath);
+                RollingFileDTO rollingFileDTO = saveImage(file);
+                fileNames.add(rollingFileDTO);
             } catch (IllegalArgumentException e) {
-                saveResult.fail(i);
+                log.info("error");
             }
         }
-
-        return saveResult;
+        return fileNames;
     }
 
     // 저장 된 모든 파일 이름 조회
-    public Set<String> getAllFileNames() {
-        return fileMapper.getAllFileNames();
-    }
+//    public Set<String> getAllFileNames() {
+//        return fileMapper.getAllFileNames();
+//    }
 
     // 이미지 저장 후 저장 된 이름 반환
-    private String saveImage(MultipartFile file) {
+    private RollingFileDTO saveImage(MultipartFile file) {
         validImage(file);
 
         String storedName = generateStoredName(file);
-        FileDTO fileDTO = new FileDTO(file, storedName);
-        fileMapper.addFile(fileDTO);
+
+
         try {
+
             String imagePath = basePath + "/" + storedName;
 
             FileSystemResource resource = new FileSystemResource(imagePath);
@@ -96,13 +90,13 @@ public class ImageService {
             Thumbnails.of(new File(imagePath))
                     .forceSize(160, 160)
                     .toFile(new File(basePath + "/s_" + storedName));
+
+            log.info("[Save] : {} -> {}", file.getOriginalFilename(), storedName);
+
+            return new RollingFileDTO(storedName, file.getOriginalFilename(), file.getSize());
         } catch (IOException e) {
             throw new IllegalArgumentException("파일 저장 실패");
         }
-
-        log.info("[Save] : {} -> {}", file.getOriginalFilename(), storedName);
-
-        return storedName;
     }
 
     private void initFolder() {

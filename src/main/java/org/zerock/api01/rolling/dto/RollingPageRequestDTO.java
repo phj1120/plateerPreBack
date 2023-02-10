@@ -1,27 +1,22 @@
 package org.zerock.api01.rolling.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.zerock.api01.common.dto.PageRequestDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
-@NoArgsConstructor
 public class RollingPageRequestDTO extends PageRequestDTO {
-    String keyword;
-    RollingSearchType[] types;
 
-    public RollingPageRequestDTO(int page, int size) {
-        super(page, size);
-    }
+    private String keyword;
 
-    public RollingPageRequestDTO(int page, int size, String keyword, RollingSearchType[] types) {
+    private List<String> types = new ArrayList<>();
+
+    public RollingPageRequestDTO(int page, int size, String keyword, List<String> types) {
         super(page, size);
         this.keyword = keyword;
         this.types = types;
     }
 
-    public RollingPageRequestDTO(String keyword, RollingSearchType[] types) {
-        this.keyword = keyword;
-        this.types = types;
-    }
 }

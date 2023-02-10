@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.api01.rolling.mapper.RollingMapper">
+
     <sql id="search">
         <bind name="pattern" value="'%' + _parameter.getKeyword() + '%'"/>
         and
@@ -46,8 +47,10 @@
         where rolling_id = #{id} and del_flag = false
     </select>
 
-    <insert id="addRolling"
-            useGeneratedKeys="true" keyProperty="rollingId">
+    <insert id="addRolling">
+        <selectKey  keyProperty="rollingId" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into tbl_rolling (title, target, img_src, create_dt, writer_member_id)
         value (#{title}, #{target}, #{imgSrc}, #{createDt}, #{writerMemberId})
     </insert>
@@ -61,9 +64,7 @@
             <if test="target != null">
                 target = #{target},
             </if>
-            <if test="imgSrc != null">
                 img_src = #{imgSrc},
-            </if>
             <if test="true">
                 update_dt = #{updateDt}
             </if>
@@ -75,13 +76,10 @@
         UPDATE
         tbl_rolling
         SET
-        del_flag = true
+        del_flag = true,
+        img_Src = ""
         WHERE
         rolling_id = #{id}
     </update>
 
-    <delete id="deleteImageByRollingId">
-        DELETE FROM tbl_file
-        WHERE rno = #{id}
-    </delete>
 </mapper>
