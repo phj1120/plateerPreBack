@@ -22,12 +22,6 @@ public class ImageUtil {
     @Value("${basePath}")
     private String basePath;
 
-
-    // Rolling ID에 해당하는 이미지 Path 조회
-//    public Set<String> getImagePaths(Long rollingId) {
-//        return fileMapper.getImagePaths(rollingId);
-//    }
-
     // 이미지 경로에 해당하는 이미지 조회
     public Resource readImage(String storedName) {
         String imagePath = basePath + "/" + storedName;
@@ -41,16 +35,6 @@ public class ImageUtil {
         }
     }
 
-    // 해당하는 사진에 rolling id 저장
-//    public void setRollingId(Long id, Set<String> names) {
-//        fileMapper.setRollingId(id, names);
-//    }
-
-    // Rolling Id 에 해당하는 사진 DB 에서 삭제
-//    public void deleteImage(Long rollingId) {
-//        fileMapper.deleteImageByRollingId(rollingId);
-//    }
-
     // 이미지 저장 후 저장 결과 반환
     public List<RollingFileDTO> saveImages(List<MultipartFile> files) {
         initFolder();
@@ -62,35 +46,27 @@ public class ImageUtil {
                 RollingFileDTO rollingFileDTO = saveImage(file);
                 fileNames.add(rollingFileDTO);
             } catch (IllegalArgumentException e) {
-                log.info("error");
+                log.info("[파일 저장 실패]: " + file.getOriginalFilename());
             }
         }
         return fileNames;
     }
 
-    // 저장 된 모든 파일 이름 조회
-//    public Set<String> getAllFileNames() {
-//        return fileMapper.getAllFileNames();
-//    }
-
     // 이미지 저장 후 저장 된 이름 반환
     private RollingFileDTO saveImage(MultipartFile file) {
         validImage(file);
-
         String storedName = generateStoredName(file);
 
-
         try {
-
+            // 이미지 지정 위치에 저장
             String imagePath = basePath + "/" + storedName;
-
             FileSystemResource resource = new FileSystemResource(imagePath);
             resource.getOutputStream().write(file.getBytes());
 
+            // 썸네일 생성
             Thumbnails.of(new File(imagePath))
                     .forceSize(160, 160)
                     .toFile(new File(basePath + "/s_" + storedName));
-
             log.info("[Save] : {} -> {}", file.getOriginalFilename(), storedName);
 
             return new RollingFileDTO(storedName, file.getOriginalFilename(), file.getSize());
@@ -126,5 +102,4 @@ public class ImageUtil {
 
         return storedName;
     }
-
 }

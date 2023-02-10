@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResultDTO<T> {
-    T data;
+    T result;
     String error;
 }

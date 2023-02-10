@@ -25,7 +25,6 @@ public class RollingServiceImpl implements RollingService {
 
     @Override
     public PageResultDTO<RollingDTO> getRollingList(RollingPageRequestDTO rollingPageRequestDTO) {
-
         int count = rollingMapper.getCount(rollingPageRequestDTO);
 
         List<RollingDTO> dtoList = rollingMapper.getList(rollingPageRequestDTO);
@@ -47,12 +46,8 @@ public class RollingServiceImpl implements RollingService {
     public Long addRolling(RollingDTO rollingDTO) {
         // 롤링 저장
         rollingMapper.addRolling(rollingDTO);
-        log.info("====================================");
-        log.info("====================================");
-        log.info("====================================");
-        log.info(rollingDTO);
         Long rollingId = rollingDTO.getRollingId();
-        log.info(rollingId);
+
         // 파일 저장
         rollingDTO.getFiles().stream().forEach(rollingFileDTO -> {
             rollingFileDTO.setRno(rollingId);
@@ -64,11 +59,10 @@ public class RollingServiceImpl implements RollingService {
 
     @Override
     public Long modifyRolling(RollingDTO rollingDTO) {
-
-        // 롤링 DB 저장
-        rollingMapper.modifyRolling(rollingDTO);
-
         Long rollingId = rollingDTO.getRollingId();
+
+        // 롤링 DB 수정
+        rollingMapper.modifyRolling(rollingDTO);
 
         // 파일 저장
         rollingDTO.getFiles().stream().forEach(rollingFileDTO -> {
@@ -80,14 +74,16 @@ public class RollingServiceImpl implements RollingService {
     }
 
     public Long deleteFile(Long rollingId) {
-
         return fileMapper.deleteImageByRollingId(rollingId);
     }
 
     @Override
     public Long deleteRolling(Long id) {
         deleteFile(id);
-
-        return rollingMapper.deleteRolling(id);
+        Long count = rollingMapper.deleteRolling(id);
+        if (count <= 0) {
+            throw new IllegalArgumentException("삭제 할 정보 없음");
+        }
+        return id;
     }
 }
