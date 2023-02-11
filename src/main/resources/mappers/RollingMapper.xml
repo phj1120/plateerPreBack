@@ -48,7 +48,7 @@
     </select>
 
     <insert id="addRolling">
-        <selectKey  keyProperty="rollingId" resultType="long" order="AFTER">
+        <selectKey keyProperty="rollingId" resultType="long" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into tbl_rolling (title, target, img_src, create_dt, writer_member_id)
@@ -64,7 +64,7 @@
             <if test="target != null">
                 target = #{target},
             </if>
-                img_src = #{imgSrc},
+            img_src = #{imgSrc},
             <if test="true">
                 update_dt = #{updateDt}
             </if>

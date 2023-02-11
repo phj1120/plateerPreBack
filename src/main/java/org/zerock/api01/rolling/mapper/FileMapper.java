@@ -3,6 +3,7 @@ package org.zerock.api01.rolling.mapper;
 import org.zerock.api01.rolling.dto.RollingFileDTO;
 
 import java.util.List;
+import java.util.Set;
 
 public interface FileMapper {
 
@@ -11,4 +12,6 @@ public interface FileMapper {
     List<RollingFileDTO> getRollingFileList(Long id);
 
     Long deleteImageByRollingId(Long id);
+
+    Set<String> getAllFileNames();
 }
