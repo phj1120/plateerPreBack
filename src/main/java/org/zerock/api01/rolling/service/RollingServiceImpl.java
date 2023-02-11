@@ -12,6 +12,7 @@ import org.zerock.api01.rolling.mapper.FileMapper;
 import org.zerock.api01.rolling.mapper.RollingMapper;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -73,9 +74,11 @@ public class RollingServiceImpl implements RollingService {
         return rollingId;
     }
 
+    @Override
     public Long deleteFile(Long rollingId) {
         return fileMapper.deleteImageByRollingId(rollingId);
     }
+
 
     @Override
     public Long deleteRolling(Long id) {
@@ -85,5 +88,10 @@ public class RollingServiceImpl implements RollingService {
             throw new IllegalArgumentException("삭제 할 정보 없음");
         }
         return id;
+    }
+
+    @Override
+    public Set<String> getAllFileNames() {
+        return fileMapper.getAllFileNames();
     }
 }

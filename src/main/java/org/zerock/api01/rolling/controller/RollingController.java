@@ -26,19 +26,24 @@ public class RollingController {
 
     @GetMapping("/list")
     public PageResultDTO<RollingDTO> getRollingList(RollingPageRequestDTO rollingPageRequestDTO) {
+        PageResultDTO<RollingDTO> result = rollingService.getRollingList(rollingPageRequestDTO);
 
-        log.info(rollingPageRequestDTO);
-        return rollingService.getRollingList(rollingPageRequestDTO);
+        return result;
     }
 
     @GetMapping("/{id}")
     public RollingDTO getRolling(@PathVariable("id") Long id) {
-        return rollingService.getRolling(id);
+        RollingDTO result = rollingService.getRolling(id);
+
+        return result;
     }
 
     @PostMapping
     public ResultDTO<Long> addRolling(RollingMultipartDTO rollingMultipartDTO) {
+        // 이미지 저장
         List<RollingFileDTO> fileNames = imageUtil.saveImages(rollingMultipartDTO.getImages());
+
+        // 롤링 저장
         RollingDTO rollingDTO = new RollingDTO(rollingMultipartDTO, fileNames);
         Long result = rollingService.addRolling(rollingDTO);
 
@@ -56,8 +61,7 @@ public class RollingController {
         List<RollingFileDTO> fileNames = imageUtil.saveImages(rollingMultipartDTO.getImages());
 
         // 롤링 정보 수정
-        RollingDTO rollingDTO = new RollingDTO(rollingMultipartDTO, fileNames);
-        rollingDTO.setRollingId(id);
+        RollingDTO rollingDTO = new RollingDTO(rollingMultipartDTO, fileNames, id);
         Long result = rollingService.modifyRolling(rollingDTO);
 
         return ResultDTO.<Long>builder()
